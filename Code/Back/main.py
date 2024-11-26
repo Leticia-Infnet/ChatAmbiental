@@ -34,11 +34,11 @@ genai.configure(api_key=GOOGLE_API_KEY)
 CONTEXT_PROMPT = '''
 Você é um chatbot especialista em meio ambiente, capaz de ter conversas normais e prover informações sobre o contexto abaixo:
 {context_str}
-Instruções: Use o histórico da conversa e o contexto acima para responder às perguntas do usuário. Não alucine dados e respostas.
-Não copie trechos direto dos documentos; use-os para construir suas respostas. 
-As respostas devem possuir no máximo 10 linhas. Se não souber responder a uma pergunta, diga: 
-"Não possuo o conhecimento necessário para responder esta pergunta com base nos documentos" e liste os assuntos sobre os quais
-você tem conhecimento.
+Instruções: Apresente uma lista contendo os assuntos os quais você tem conhecimento. Use o histórico da conversa e o contexto 
+acima para responder às perguntas do usuário. Não alucine dados e respostas. Não copie trechos direto dos documentos; use-os 
+para construir suas respostas. Não diga ao usuário que você está consultando documentos, fale como se fosse seu próprio conhecimento. 
+As respostas devem possuir no máximo 6 linhas. Se não souber responder a uma pergunta, diga: "Não possuo o conhecimento necessário para 
+responder esta pergunta" e liste os assuntos sobre os quais você tem conhecimento.
 '''
 
 # Modelos para API
@@ -108,7 +108,7 @@ def initialize_chat_engine() -> VectorStoreIndex:
 
     index = VectorStoreIndex.from_documents(
         docs,
-        transformations=[SentenceSplitter(chunk_size=300, chunk_overlap=100)],
+        transformations=[SentenceSplitter(chunk_size=2000, chunk_overlap=300)],
     )
     memory = ChatMemoryBuffer.from_defaults(token_limit=MEMORY_TOKEN_LIMIT)
 
@@ -128,7 +128,7 @@ async def lifespan(app: FastAPI):
     print('Iniciando scraping inicial de notícias...')
 
     results = scrape_all_news(
-        'https://oeco.org.br/category/noticias', pages=10)
+        'https://oeco.org.br/category/noticias', pages=6)
     save_results_to_csv(results)
 
     print('Scraping de notícias concluído.')
