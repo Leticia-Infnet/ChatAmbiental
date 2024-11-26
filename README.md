@@ -15,7 +15,7 @@ feita com a mesma base de dados usada pelo ChatBot. A base de dados é um arquiv
 Primeiro, clone este repositório para sua máquina:
 
 ```
-git clone https://github.com/Leticia-Infnet/leticia_abreu_PB_TP3.git
+git clone https://github.com/Leticia-Infnet/ChatAmbiental.git
 ```
 ### Baixando a versão correta do Torch
 :warning:ATENÇÃO
