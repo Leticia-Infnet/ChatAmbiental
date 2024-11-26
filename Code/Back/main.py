@@ -1,13 +1,15 @@
 import os
 import torch
 import uvicorn
+from pathlib import Path
 from dotenv import load_dotenv
 from fastapi import FastAPI
 from pydantic import BaseModel
 from contextlib import asynccontextmanager
 
 # Bibliotecas de terceiros
-from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings
+from llama_index.readers.file import PagedCSVReader
+from llama_index.core import VectorStoreIndex, Settings
 from llama_index.llms.gemini import Gemini
 from llama_index.core.memory import ChatMemoryBuffer
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
@@ -103,8 +105,15 @@ def initialize_chat_engine() -> VectorStoreIndex:
     '''Inicializa a engine de chat com contexto dos documentos e memória conversacional.'''
     Settings.embed_model = initialize_embeddings()
 
-    reader = SimpleDirectoryReader(input_dir=NEWS_DATA_DIRECTORY)
-    docs = reader.load_data()
+    csv_reader = PagedCSVReader(encoding='latin-1')
+
+    csv_directory = Path(NEWS_DATA_DIRECTORY)
+
+    documents = []
+
+    for csv_file in csv_directory.glob('*.csv'):
+        docs = csv_reader.load_data(file=csv_file)
+        documents.extend(docs)
 
     index = VectorStoreIndex.from_documents(
         docs,
@@ -120,17 +129,19 @@ def initialize_chat_engine() -> VectorStoreIndex:
         verbose=True,
     )
 
-
 # Aplicação FastAPI e gerenciamento do ciclo de vida
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     '''Gerencia o ciclo de vida do app, incluindo scraping inicial e inicialização da engine de chat.'''
     print('Iniciando scraping inicial de notícias...')
-
-    results = scrape_all_news(
-        'https://oeco.org.br/category/noticias', pages=6)
-    save_results_to_csv(results)
-
+    news_results = scrape_all_news(
+        'https://oeco.org.br/category/noticias', pages=5)
+    save_results_to_csv(news_results, 'news_results.csv')
+    articles_results = scrape_all_news(
+        'https://oeco.org.br/category/reportagens', pages=5)
+    save_results_to_csv(articles_results, 'articles_results.csv')
     print('Scraping de notícias concluído.')
 
     print('Inicializando engine de chat...')

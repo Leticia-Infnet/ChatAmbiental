@@ -61,11 +61,15 @@ def scrape_news_content(url: str) -> Dict[str, str]:
     try:
         soup = get_soup(url)
         title = soup.select_one('h1').text if soup.select_one('h1') else ''
-        subtitle = soup.select_one('p[class="lead font-italic mb-5"]').text if soup.select_one('p[class="lead font-italic mb-5"]') else ''
+        subtitle = soup.select_one('p[class="lead font-italic mb-5"]').text if soup.select_one(
+            'p[class="lead font-italic mb-5"]') else ''
+        published_time = soup.select_one('meta[property="article:published_time"]').get(
+            'content') if soup.select_one('meta[property="article:published_time"]') else ''
         content_tags = soup.select('div[class="article"] > p')
-        content = '\n'.join(tag.text for tag in content_tags) if content_tags else ''
+        content = '\n'.join(
+            tag.text for tag in content_tags) if content_tags else ''
 
-        return {'title': title, 'subtitle': subtitle, 'content': content}
+        return {'title': title, 'subtitle': subtitle, 'content': content, 'published_time': published_time, 'url': url}
     except Exception as e:
         print(f'Erro ao extrair conteúdo de {url}: {e}')
         return {}
