@@ -22,24 +22,26 @@ from .utils.web_scraper import scrape_all_news, save_results_to_csv
 # Constantes
 MEMORY_TOKEN_LIMIT = 3900
 NEWS_DATA_DIRECTORY = os.path.abspath(os.path.join('.', 'Data', 'news_data'))
-ENV_PATH = os.path.abspath(os.path.join('.env'))
+ENV_PATH = os.path.abspath('.env')
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 # Carregar variáveis de ambiente
-load_dotenv(dotenv_path=ENV_PATH)
+load_dotenv(dotenv_path=ENV_PATH,
+            override=True)
 GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
 if not GOOGLE_API_KEY:
     raise ValueError('GOOGLE_API_KEY não encontrada nas variáveis de ambiente')
 genai.configure(api_key=GOOGLE_API_KEY)
 
+
 # Template de prompt
 CONTEXT_PROMPT = '''
 Você é um chatbot especialista em meio ambiente, capaz de ter conversas normais e prover informações sobre o contexto abaixo:
 {context_str}
-Instruções: Apresente uma lista contendo os assuntos os quais você tem conhecimento. Use o histórico da conversa e o contexto 
-acima para responder às perguntas do usuário. Não alucine dados e respostas. Não copie trechos direto dos documentos; use-os 
-para construir suas respostas. Não diga ao usuário que você está consultando documentos, fale como se fosse seu próprio conhecimento. 
-As respostas devem possuir no máximo 6 linhas. Se não souber responder a uma pergunta, diga: "Não possuo o conhecimento necessário para 
+Instruções: Apresente uma lista contendo os assuntos os quais você tem conhecimento. Use o histórico da conversa e o contexto
+acima para responder às perguntas do usuário. Não alucine dados e respostas. Não copie trechos direto dos documentos; use-os
+para construir suas respostas. Não diga ao usuário que você está consultando documentos, fale como se fosse seu próprio conhecimento.
+As respostas devem possuir no máximo 6 linhas. Se não souber responder a uma pergunta, diga: "Não possuo o conhecimento necessário para
 responder esta pergunta" e liste os assuntos sobre os quais você tem conhecimento.
 '''
 
