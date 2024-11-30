@@ -1,81 +1,132 @@
-# Project Charter: Ciência de Dados em Meio Ambiente
+# Project Charter - ChatAmbiental: Transformando Informação em Ação Ambiental
 
-## Problema de Negócio na Perspectiva de Ciência de Dados
+## Contexto Global
 
-### Desafio de Dados
+### Desafios Ambientais Contemporâneos
 
-- **Problema**: Transformar grandes volumes de informações ambientais em conhecimento acessível
-- **Abordagem Científica**:
-  1. Coleta sistemática de dados
-  2. Processamento de linguagem natural
-  3. Recuperação e geração de informações contextualizadas
+- Desinformação sobre questões ambientais
+- Baixa acessibilidade de informações técnicas
+- Distanciamento entre conhecimento científico e sociedade
 
-### Arquitetura de Solução em Ciência de Dados
+## Alinhamento com ODS (Objetivos de Desenvolvimento Sustentável)
 
-#### Componentes Técnicos
+### ODS Impactados
 
-- **Coleta de Dados**: Webscraping inteligente
-- **Processamento**:
-  - Embeddings semânticos
-  - Modelo de linguagem generativo
-- **Transformação**:
-  - Fragmentação de texto
-  - Indexação vetorial
-- **Geração de Insights**:
-  - Resposta contextual via RAG
-  - Memória conversacional
+1. **ODS 4**: Educação de Qualidade
 
-### Inovação Metodológica
+   - Democratização do conhecimento ambiental
+   - Formação de consciência crítica
 
-#### Engenharia de Prompts
+2. **ODS 13**: Ação Contra a Mudança Global do Clima
 
-- **Objetivo**: Guiar o modelo para respostas precisas e relevantes
-- **Estratégias**:
-  - Prompt de contexto detalhado
-  - Limitações de geração
-  - Instruções específicas para evitar alucinações
+   - Disseminação de informações sobre mudanças climáticas
+   - Empoderamento para ações locais
 
-#### Técnicas Avançadas
+3. **ODS 15**: Vida Terrestre
+   - Conscientização sobre biodiversidade
+   - Sensibilização para conservação ambiental
 
-- **Embedding Semântico**:
-  - Modelo Multilingual MiniLM
-  - Representação vetorial de documentos
-- **Recuperação Contextual**:
-  - Fragmentação inteligente
-  - Busca por similaridade semântica
+## Problema de Negócio
 
-### Considerações Éticas em Ciência de Dados
+### Diagnóstico
+
+- **Gap Informacional**: Sociedade desconecta de informações ambientais críticas
+- **Complexidade**: Dados técnicos de difícil compreensão
+- **Alcance Limitado**: Informações restritas a grupos especializados
+
+### Solução Proposta: ChatAmbiental
+
+#### Modelo de Resolução
+
+- Transformação de dados complexos em informação acessível
+- Tecnologia de IA como ponte comunicacional
+- Democratização do conhecimento ambiental
+
+## Modelo de Impacto ESG
+
+### Dimensão Ambiental
+
+- Amplificação de narrativas sobre conservação
+- Transparência em dados ambientais
+- Incentivo a comportamentos sustentáveis
+
+### Dimensão Social
+
+- Educação ambiental inclusiva
+- Redução de barreiras de conhecimento
+- Empoderamento cidadão
+
+### Dimensão de Governança
+
+- Fonte de informação independente
+- Transparência na comunicação
+- Tecnologia ética e responsável
+
+## Teoria da Mudança
+
+### Cadeia de Impacto
+
+1. **Informação** → Exposição a dados ambientais
+2. **Compreensão** → Entendimento de complexidades
+3. **Conscientização** → Formação de opinião crítica
+4. **Ação** → Mudanças comportamentais
+
+## Métricas de Impacto
+
+### Indicadores Qualitativos
+
+- Qualidade das respostas
+- Complexidade dos temas abordados
+- Feedback dos usuários
+
+## Estratégia Tecnológica
+
+### Diferenciais
+
+- IA generativa de última geração
+- Recuperação semântica de informações
+- Adaptabilidade e aprendizado contínuo
+
+## Escalabilidade e Replicabilidade
+
+### Potencial de Expansão
+
+- Adaptável para diferentes domínios
+- Modelo replicável para outras áreas
+- Baixo custo de implementação
+
+## Considerações Éticas
+
+### Princípios Norteadores
 
 - Transparência na origem dos dados
-- Mitigação de vieses de modelo
-- Respeito à integridade informacional
+- Prevenção de desinformação
+- Respeito à diversidade de perspectivas
 
-## Métricas de Avaliação Científica
+## Riscos e Mitigações
 
-### Métricas Quantitativas
+### Principais Riscos
 
-- Precisão de recuperação de informações
-- Coerência das respostas
-- Relevância contextual
-- Taxa de respostas não alucinatórias
+- Viés de fonte única
+- Interpretações equivocadas
+- Limitações tecnológicas
 
-### Métricas Qualitativas
+### Estratégias de Mitigação
 
-- Compreensibilidade das respostas
-- Utilidade para diferentes perfis de usuário
-- Contribuição para conscientização ambiental
+- Diversificação de fontes
+- Configurações rigorosas de segurança
+- Atualizações constantes
 
-## Ciclo Completo de Ciência de Dados
+## Teoria de Mudança Ampliada
 
-1. **Coleta** (Webscraping)
-2. **Preparação** (Limpeza e Transformação)
-3. **Modelagem** (Embeddings e LLM)
-4. **Avaliação** (Métricas de Desempenho)
-5. **Implantação** (Interface Streamlit)
-6. **Monitoramento** (Feedback Contínuo)
+### Impacto Sistêmico
 
-### Potencial de Impacto
+- **Curto Prazo**: Informação acessível
+- **Médio Prazo**: Consciência crítica
+- **Longo Prazo**: Transformação social e ambiental
 
-- Democratização do conhecimento ambiental
-- Modelo replicável para outras áreas
-- Demonstração do potencial de IA em comunicação científica
+## Conclusão
+
+### Propósito Fundamental
+
+Não apenas informar, mas **inspirar ação** para um futuro mais sustentável, usando tecnologia como catalisadora de mudança social e ambiental.
