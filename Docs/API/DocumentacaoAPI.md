@@ -2,121 +2,98 @@
 
 ## Visão Geral
 
-Esta API implementa um sistema de Recuperação e Geração Aumentada (RAG) usando Gemini, HuggingFace Embeddings e LlamaIndex para processamento de perguntas e recuperação de contexto a partir de documentos.
+Esta API implementa um sistema de Recuperação e Geração Aumentada (RAG) especificamente projetado para integração com frontend Streamlit, processando consultas de usuários sobre tópicos ambientais.
 
-### Tecnologias Utilizadas
+## Arquitetura de Integração
 
-- FastAPI
-- Gemini (Modelo de IA)
-- HuggingFace Embeddings
-- LlamaIndex
-- Uvicorn
+### Fluxo de Comunicação
 
-## Endpoints
+1. **Frontend Streamlit**
 
-### 1. Consulta de Pergunta
+   - Captura pergunta do usuário
+   - Envia requisição POST para `/query`
+
+2. **Backend FastAPI**
+   - Recebe consulta
+   - Processa com motor de chat RAG
+   - Retorna resposta gerada
+
+## Tecnologias Utilizadas
+
+- **Frontend**: Streamlit
+- **Backend**: FastAPI
+- **Modelo de IA**: Google Gemini 1.5 Flash
+- **Embeddings**: HuggingFace Multilingual
+- **Orquestração**: LlamaIndex
+
+## Endpoint de Consulta
+
+### Detalhes do Endpoint
 
 - **URL**: `/query`
 - **Método**: `POST`
-- **Descrição**: Processa perguntas do usuário e retorna respostas geradas pela IA
+- **Função**: Processamento de perguntas ambientais
 
-#### Parâmetros de Entrada
-
-```json
-{
-  "question": "string (obrigatório)"
-}
-```
-
-#### Resposta de Sucesso
+### Contrato de Requisição
 
 ```json
 {
-  "answer": "string"
+  "question": "Qual a situação atual do desmatamento na Amazônia?"
 }
 ```
 
-### 2. Status do Servidor
-
-- **URL**: `/status`
-- **Método**: `GET`
-- **Descrição**: Verifica o status do servidor
-
-#### Resposta de Sucesso
+### Contrato de Resposta
 
 ```json
 {
-  "message": "O servidor está rodando!"
+  "answer": "Resposta contextualizada baseada nas notícias indexadas"
 }
 ```
 
-## Configurações e Inicialização
+## Características Específicas de Integração Streamlit
 
-### Modelo Gemini
+### Gerenciamento de Estado
 
-- **Modelo**: `gemini-1.5-flash`
-- **Configurações**:
-  - `temperature`: 0.4
-  - `top_p`: 1
-  - `top_k`: 40
+- Suporte à memória conversacional
+- Manutenção de contexto entre mensagens
+- Recuperação dinâmica de informações
+
+### Tratamento de Erros
+
+- Mensagens de erro amigáveis
+- Fallback para respostas padrão
+- Spinner de carregamento no frontend
+
+## Segurança e Performance
 
 ### Configurações de Segurança
 
-O modelo bloqueia conteúdo nas seguintes categorias:
+- Filtros de conteúdo Gemini
+- Prevenção de respostas inadequadas
+- Limite de tokens de resposta
 
-- Assédio
-- Discurso de Ódio
-- Conteúdo Sexualmente Explícito
-- Conteúdo Perigoso
+### Otimizações
 
-### Embeddings
+- Embeddings semânticos eficientes
+- Fragmentação inteligente de documentos
+- Recuperação vetorial rápida
 
-- **Modelo**: `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2`
-- **Características**:
-  - Normalização ativada
-  - Suporte multilíngue
-  - Otimização dinâmica de batch size
+## Diferenciais Técnicos
 
-## Fluxo de Processamento
+### Processamento de Linguagem
 
-1. Scraping inicial de notícias
-2. Carregamento de documentos em um índice vetorial
-3. Inicialização do motor de chat com memória conversacional
-4. Processamento de consultas com recuperação de contexto
+- Modelo multilíngue
+- Recuperação contextual precisa
+- Geração de respostas natural
 
-## Requisitos
+### Fonte de Dados
 
-- Python 3.8+
-- Bibliotecas listadas no requirements.txt
-- Acesso à internet para inicialização dos modelos
-
-## Execução
-
-```bash
-uvicorn main:app --host 0.0.0.0 --port 8000
-```
+- Webscraping do jornal ((o)) eco
+- Foco em notícias ambientais contemporâneas
+- Atualização periódica de fontes
 
 ## Limitações
 
-- Dependente de conexão com serviços externos
-- Qualidade das respostas vinculada à qualidade dos documentos indexados
-- Limite de tokens na memória conversacional
-
-## Segurança
-
-- Configurações de segurança do Gemini
-- Limitação de conteúdo potencialmente nocivo
-- Controle de geração de respostas
-
-## Erros Comuns
-
-- Falta de documentos para indexação
-- Problemas de conexão com modelos externos
-- Estouro de limite de tokens
-
-## Próximos Passos
-
-- Implementar autenticação
-- Adicionar mais fontes de dados
-- Melhorar tratamento de erro
-- Adicionar monitoramento de performance
+- Dependência de conexão externa
+- Qualidade limitada pelo corpus de notícias
+- Possíveis vieses das fontes originais
