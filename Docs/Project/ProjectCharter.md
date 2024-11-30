@@ -1,21 +1,81 @@
-# Project Charter
+# Project Charter: Ciência de Dados em Meio Ambiente
 
-## Stakeholders
+## Problema de Negócio na Perspectiva de Ciência de Dados
 
-- Clientes: Organizações governamentais, pesquisadores e público geral
+### Desafio de Dados
 
-- Problema de negócios: Aumentar o acesso à informações sobre o meio ambiente, tópico muitas vezes negligenciado pelos grandes veículos de comunicação
+- **Problema**: Transformar grandes volumes de informações ambientais em conhecimento acessível
+- **Abordagem Científica**:
+  1. Coleta sistemática de dados
+  2. Processamento de linguagem natural
+  3. Recuperação e geração de informações contextualizadas
 
-## Scope
+### Arquitetura de Solução em Ciência de Dados
 
-- Solução: Desenvolver um chatbot que responda à perguntas sobre meio ambiente, através de um RAG em cima de notícias do jornal ((o)) eco, com webscraping
+#### Componentes Técnicos
 
-- Consumo: O modelo será consumido através de um dashboard Streamlit
+- **Coleta de Dados**: Webscraping inteligente
+- **Processamento**:
+  - Embeddings semânticos
+  - Modelo de linguagem generativo
+- **Transformação**:
+  - Fragmentação de texto
+  - Indexação vetorial
+- **Geração de Insights**:
+  - Resposta contextual via RAG
+  - Memória conversacional
 
-## Objectives
+### Inovação Metodológica
 
-- Servir como um canal confiável de notícias e informações envolvendo o meio ambiente
+#### Engenharia de Prompts
 
-- Resumir grande volumes de dados para serem consumidos de forma simples
+- **Objetivo**: Guiar o modelo para respostas precisas e relevantes
+- **Estratégias**:
+  - Prompt de contexto detalhado
+  - Limitações de geração
+  - Instruções específicas para evitar alucinações
 
-- Aumentar a conscientização pública e o apoio aos esforços de conservação
+#### Técnicas Avançadas
+
+- **Embedding Semântico**:
+  - Modelo Multilingual MiniLM
+  - Representação vetorial de documentos
+- **Recuperação Contextual**:
+  - Fragmentação inteligente
+  - Busca por similaridade semântica
+
+### Considerações Éticas em Ciência de Dados
+
+- Transparência na origem dos dados
+- Mitigação de vieses de modelo
+- Respeito à integridade informacional
+
+## Métricas de Avaliação Científica
+
+### Métricas Quantitativas
+
+- Precisão de recuperação de informações
+- Coerência das respostas
+- Relevância contextual
+- Taxa de respostas não alucinatórias
+
+### Métricas Qualitativas
+
+- Compreensibilidade das respostas
+- Utilidade para diferentes perfis de usuário
+- Contribuição para conscientização ambiental
+
+## Ciclo Completo de Ciência de Dados
+
+1. **Coleta** (Webscraping)
+2. **Preparação** (Limpeza e Transformação)
+3. **Modelagem** (Embeddings e LLM)
+4. **Avaliação** (Métricas de Desempenho)
+5. **Implantação** (Interface Streamlit)
+6. **Monitoramento** (Feedback Contínuo)
+
+### Potencial de Impacto
+
+- Democratização do conhecimento ambiental
+- Modelo replicável para outras áreas
+- Demonstração do potencial de IA em comunicação científica
